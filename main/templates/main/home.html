@@ -1,0 +1,124 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+  <section class="hero grid-field">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Est. 1959 &middot; Faisalabad, Punjab</span>
+        <h1>Trained on the drawing board.<br>Proven on the factory floor.</h1>
+        <p class="lede">
+          Government College of Technology, Samanabad, prepares diploma-level technologists
+          for Faisalabad's mills, workshops and construction sites &mdash; and for the industries
+          being built next.
+        </p>
+        <div class="hero-actions">
+          <a href="{% url 'signup' %}" class="btn btn-primary">Create an account</a>
+          <a href="{% url 'contact' %}" class="btn">Ask admissions</a>
+        </div>
+      </div>
+
+      <div class="title-block">
+        <div class="tb-seal">EST.<br>1959</div>
+        <div class="tb-title">
+          <span class="tb-label">Institution</span>
+          <span class="tb-value">Govt. College of Technology</span>
+        </div>
+        <div class="tb-row">
+          <div class="tb-cell">
+            <span class="tb-label">Location</span>
+            <span class="tb-value">Samanabad, Faisalabad</span>
+          </div>
+          <div class="tb-cell">
+            <span class="tb-label">Sector</span>
+            <span class="tb-value">Public / Govt.</span>
+          </div>
+        </div>
+        <div class="tb-row">
+          <div class="tb-cell">
+            <span class="tb-label">Programs</span>
+            <span class="tb-value">8 Diploma Tracks</span>
+          </div>
+          <div class="tb-cell">
+            <span class="tb-label">Drawing No.</span>
+            <span class="tb-value">GCT-FSD-01</span>
+          </div>
+        </div>
+        <div class="tb-row">
+          <div class="tb-cell">
+            <span class="tb-label">Scale</span>
+            <span class="tb-value">Diploma &rarr; Industry</span>
+          </div>
+          <div class="tb-cell">
+            <span class="tb-label">Revision</span>
+            <span class="tb-value">Intake {% now "Y" %}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container stats-grid">
+      {% for stat in stats %}
+        <div>
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section" id="departments">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Programs of study</span>
+        <h2>Eight departments, one shared workshop culture</h2>
+      </div>
+      <div class="dept-grid">
+        {% for dept in departments %}
+          <div class="dept-card">
+            <span class="dept-code">{{ dept.code }} &mdash; DIPLOMA</span>
+            <h3>{{ dept.name }}</h3>
+            <p>{{ dept.blurb }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="panel">
+        <div class="stamp">
+          NOTE 01<br>
+          Read before proceeding
+        </div>
+        <div>
+          <h2 style="font-size:1.4rem;">About the college</h2>
+          <p>
+            Since 1959, the Government College of Technology in Samanabad has supplied
+            Faisalabad's textile mills, engineering workshops and construction firms with
+            diploma-qualified technologists. Labs are built around the machines students
+            will actually operate on the job, and every term ends with an industry placement
+            review rather than a written exam alone.
+          </p>
+          <p>
+            The college is a public institution under the Punjab Board of Technical
+            Education, and admission is open each year to matriculation-level students
+            across the district.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Have a question about admissions?</h2>
+      <p>The admissions office replies to every message submitted through the contact page within two working days.</p>
+      <a href="{% url 'contact' %}" class="btn btn-primary">Go to contact page</a>
+    </div>
+  </section>
+
+{% endblock %}

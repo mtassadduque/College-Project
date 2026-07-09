@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Government College of Technology, Samanabad, Faisalabad{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="{% url 'home' %}" class="brand">
+        <span class="brand-mark">GCT</span>
+        <span class="brand-text">
+          <span class="full">Govt. College of Technology</span>
+          <span class="sub">Samanabad &middot; Faisalabad</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'home' %}#departments">Departments</a>
+        <a href="{% url 'contact' %}">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        {% if user.is_authenticated %}
+          <span class="eyebrow">Signed in as {{ user.first_name|default:user.username }}</span>
+          <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-ghost">Log out</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-ghost">Log in</a>
+          <a href="{% url 'signup' %}" class="btn btn-primary">Sign up</a>
+        {% endif %}
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+          &#9776;
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    {% if messages %}
+      <ul class="messages container" style="margin-top:24px;">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Government College of Technology</h4>
+          <p>Samanabad, Faisalabad, Punjab, Pakistan. A public institution training technologists for industry since 1959.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}#departments">Departments</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'login' %}">Student login</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Office hours</h4>
+          <p>Mon &ndash; Sat, 8:00 AM &ndash; 3:00 PM<br>Closed on public holidays</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; {% now "Y" %} Government College of Technology, Samanabad, Faisalabad.</span>
+        <span>Built on Django.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        hamburgerBtn.setAttribute('aria-expanded', isOpen);
+      });
+    }
+  </script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

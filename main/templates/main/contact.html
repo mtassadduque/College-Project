@@ -1,0 +1,84 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Contact &mdash; Government College of Technology, Samanabad{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top:48px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Contact the college</h2>
+    </div>
+
+    <div class="contact-layout">
+      <div class="form-shell" style="margin:0;">
+        <span class="eyebrow">Contact form</span>
+        <h1>Send a message</h1>
+        <p class="form-intro">Reach admissions, academics or administration directly. We reply within two working days.</p>
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <div class="form-row-split">
+            <div class="field">
+              <label for="{{ form.name.id_for_label }}">Full name</label>
+              {{ form.name }}
+              {{ form.name.errors }}
+            </div>
+            <div class="field">
+              <label for="{{ form.email.id_for_label }}">Email</label>
+              {{ form.email }}
+              {{ form.email.errors }}
+            </div>
+          </div>
+
+          <div class="form-row-split">
+            <div class="field">
+              <label for="{{ form.phone.id_for_label }}">Phone (optional)</label>
+              {{ form.phone }}
+              {{ form.phone.errors }}
+            </div>
+            <div class="field">
+              <label for="{{ form.subject.id_for_label }}">Subject</label>
+              {{ form.subject }}
+              {{ form.subject.errors }}
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="{{ form.message.id_for_label }}">Message</label>
+            {{ form.message }}
+            {{ form.message.errors }}
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send message</button>
+        </form>
+      </div>
+
+      <div class="info-card">
+        <div class="tb-title">Reach us directly</div>
+        <div class="info-line">
+          <span class="k">Address</span>
+          <span class="v">Government College of Technology, Samanabad, Faisalabad, Punjab, Pakistan</span>
+        </div>
+        <div class="info-line">
+          <span class="k">Phone</span>
+          <span class="v">041-XXXXXXX</span>
+        </div>
+        <div class="info-line">
+          <span class="k">Email</span>
+          <span class="v">info@gct-samanabad.edu.pk</span>
+        </div>
+        <div class="info-line">
+          <span class="k">Hours</span>
+          <span class="v">Mon &ndash; Sat, 8:00 AM &ndash; 3:00 PM</span>
+        </div>
+        <div class="info-line">
+          <span class="k">Admissions</span>
+          <span class="v">Open annually to matriculation-level applicants across the district</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

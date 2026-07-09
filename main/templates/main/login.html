@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Log in &mdash; Government College of Technology, Samanabad{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top:48px;">
+  <div class="container">
+    <div class="form-shell">
+      <span class="eyebrow">Student &amp; staff portal</span>
+      <h1>Log in</h1>
+      <p class="form-intro">Access your college account.</p>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        <div class="field">
+          <label for="{{ form.username.id_for_label }}">Username</label>
+          {{ form.username }}
+          {{ form.username.errors }}
+        </div>
+
+        <div class="field">
+          <label for="{{ form.password.id_for_label }}">Password</label>
+          {{ form.password }}
+          {{ form.password.errors }}
+        </div>
+
+        {% if form.non_field_errors %}
+          <ul class="errorlist">
+            {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit" class="btn btn-primary" style="width:100%;">Log in</button>
+      </form>
+
+      <p class="form-footnote">
+        Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}
