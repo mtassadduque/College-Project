@@ -11,10 +11,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-CHANGE-THIS-KEY-BEFORE-DEPLOYMENT-!!!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    ".vercel.app",
+    "college-project-2byv.vercel.app",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://college-project-2byv.vercel.app",
+]
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
